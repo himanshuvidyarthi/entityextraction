@@ -1,9 +1,9 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import ChatPromptTemplate 
+from langchain_core.prompts import ChatPromptTemplate
 from .models import KnowledgeGraph
 
 def build_extraction_chain():
-    llm = ChatGoogleGenerativeAI(model = "gemini-2.5-flash", temperature = 0.0)
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.0)
     graph_extractor = llm.with_structured_output(KnowledgeGraph)
 
     extraction_prompt = ChatPromptTemplate.from_messages([

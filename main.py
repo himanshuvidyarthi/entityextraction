@@ -1,6 +1,6 @@
-import os 
+import os
 from dotenv import load_dotenv
-from neo4j import GraphDatabase 
+from neo4j import GraphDatabase
 from llm_pipeline.extractor import build_extraction_chain
 from llm_pipeline.neo4j_writer import push_graph_to_neo4j
 from llm_pipeline.verifier import verify_graph
@@ -11,13 +11,9 @@ print("="*60)
 print(" INITIATING AUTONOMOUS GRAPH EXTRACTION PIPELINE ")
 print("="*60)
 
-NEO4J_URI = os.getenv("NEO4J_URI")
-NEO4J_USER = os.getenv("NEO4J_USER")
-NEO4J_PASS = os.getenv("NEO4J_PASS")
-
-#Validate that required env vars are set 
-if not all([NEO4J_URI,NEO4J_USER,NEO4J_PASS]):
-    raise ValueError("Missing required environment variables: NEO4J_URI, NEO4J_USER, NEO4J_PASS")
+NEO4J_URI  = os.getenv("NEO4J_URI",  "bolt://localhost:7687")
+NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
+NEO4J_PASS = os.getenv("NEO4J_PASS", "AlphaFund2026!")
 
 raw_document_chunks = [
     "Tony's Q3 Compliance Report detailed the massive Alpha AI buyout by Microsoft.",
@@ -25,7 +21,6 @@ raw_document_chunks = [
     "Meanwhile, Apple announced they have heavily invested in a new startup called NeuralNet Labs.",
     "Tim Cook mentioned that NeuralNet Labs directly competes with Alpha AI in the generative space."
 ]
-
 print(f"[System] Loaded {len(raw_document_chunks)} unstructured text chunks.")
 
 print("[System] Initializing Gemini 2.5 Flash with Constrained Decoding...")

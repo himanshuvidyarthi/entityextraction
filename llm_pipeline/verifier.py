@@ -1,4 +1,4 @@
-from neo4j import GraphDatabase 
+from neo4j import GraphDatabase
 
 def verify_graph(uri: str, user: str, password: str):
     print("\n" + "="*40)
@@ -16,4 +16,3 @@ def verify_graph(uri: str, user: str, password: str):
             print(f"Graph Intelligence: {record['Competitor']} competes directly with "
                   f"{record['Acquired_Startup']}, which is owned by Microsoft.")
     driver.close()
-

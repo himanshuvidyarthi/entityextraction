@@ -1,5 +1,5 @@
-from typing import Literal 
-from pydantic import BaseModel, Field 
+from typing import Literal
+from pydantic import BaseModel, Field
 
 RelationshipType = Literal[
     "ACQUIRED",
@@ -23,4 +23,3 @@ class Edge(BaseModel):
 class KnowledgeGraph(BaseModel):
     nodes: list[Node] = Field(description="All entities extracted from the text")
     edges: list[Edge] = Field(description="All relationships between entities")
-
